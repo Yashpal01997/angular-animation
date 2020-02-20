@@ -1,0 +1,264 @@
+
+/* Variables */
+
+$background: #252827;
+
+$color-primary: #004ffc;
+$color-light: white;
+$color-dim: #6c6d6d;
+$spacing: 50px;
+$radius: 4px;
+
+$date: 120px;
+$dotborder: 4px;
+$dot: 11px;
+$line: 4px;
+
+$font-title: 'Saira', sans-serif;
+$font-text: 'Chivo', sans-serif;
+
+/* Base */
+
+body {
+  background: $background;
+  font-size: 16px;
+}
+
+p {
+  font-weight: 300;
+}
+
+a { 
+  color: $color-dim;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: block;
+  letter-spacing: .3em;
+  font-size: .6em;
+  font-weight: 400;
+  background: #252727;
+  padding: .3rem 1rem;
+  margin: 1.9rem 0 0 0;
+  float: right;
+}
+
+a:hover { 
+  color: $color-light;
+  background: $color-primary;
+  border-bottom: .35em solid black;
+}
+
+strong {
+  font-weight: 600;
+}
+
+h1 {
+ font-family: $font-title;
+ letter-spacing: 1.5px;
+ color: $color-light;  
+ font-weight: 400;
+ font-size: 2.4em;
+}
+
+#timeline-content {
+  margin-top: $spacing;
+  text-align: center;  
+}
+
+/* Timeline */
+
+.timeline {
+  border-left: $line solid $color-primary;
+  border-bottom-right-radius: $radius;
+  border-top-right-radius: $radius;    
+  background: fade($color-light, 3%);
+  color: fade(white, 80%);
+  font-family: $font-text;  
+  margin: $spacing;  
+  letter-spacing: 0.5px;   
+  position: relative;
+  line-height: 1.4em;
+  font-size: 1.03em;   
+  padding: $spacing;   
+  list-style: none;
+  text-align: left;  
+  font-weight: 100;  
+  max-width: 30%; 
+  
+  .event {
+    border-bottom: 1px dashed fade($color-light, 10%);
+    padding-bottom: ($spacing * 0.5);
+    margin-bottom: $spacing;  
+    position: relative;
+
+    &:last-of-type { 
+      padding-bottom: 0;
+      margin-bottom: 0; 
+      border: none;      
+    }
+
+    &:before, &:after {
+      position: absolute;
+      display: block;
+      top: 0;
+    }
+
+    &:before {
+      left: ((($date * 0.6) + $spacing + $line + $dot + ($dotborder * 2)) * 1.5) * -1;    
+      color: fade($color-light, 40%);    
+      content: attr(data-date);
+      text-align: right;
+      font-weight: 100;    
+      font-size: 0.9em;
+      min-width: $date;
+      font-family: $font-title;
+    }
+
+    &:after {
+      box-shadow: 0 0 0 $dotborder fade($color-primary,100%);    
+      left: ($spacing + $line + ($dot * 0.35)) * -1;        
+      background: lighten($background,5%);    
+      border-radius: 50%;  
+      height: $dot;
+      width: $dot;
+      content: "";
+      top: 5px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// * {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+//   outline: none;
+// }
+
+// body {
+//   margin: 0;
+//   padding: 30px 0;
+//   font-family: 'Roboto', sans-serif;
+//   background: #F1F2F6;
+// }
+
+// h1 {
+//   text-align: center;
+//   font-weight: 300;
+//   color: #777
+// }
+
+// h1 span {
+//   font-weight: 600;
+// }
+
+// .container {
+//   width: 80%;
+//   padding: 50px 0;
+//   margin: 50px auto;
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// .container:before {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 50%;
+//   margin-left: -1px;
+//   width: 2px;
+//   height: 100%;
+//   background: #CCD1D9;
+//   z-index: 1
+// }
+
+// .timeline-block {
+//   width: -webkit-calc(50% + 8px);
+//   width: -moz-calc(50% + 8px);
+//   width: calc(50% + 8px);
+//   display: -webkit-box;
+//   display: -webkit-flex;
+//   display: -moz-box;
+//   display: flex;
+//   -webkit-box-pack: justify;
+//   -webkit-justify-content: space-between;
+//   -moz-box-pack: justify;
+//   justify-content: space-between;
+//   clear: both;
+// }
+
+// .timeline-block-right {
+//   float: right;
+// }
+
+// .timeline-block-left {
+//   float: left;
+//   direction: rtl
+// }
+
+// .marker {
+//   width: 16px;
+//   height: 16px;
+//   border-radius: 50%;
+//   border: 2px solid #F5F7FA;
+//   background: #4FC1E9;
+//   margin-top: 10px;
+//   z-index: 9999
+// }
+
+// .timeline-content {
+//   width: 95%;
+//   padding: 0 15px;
+//   color: #666
+// }
+
+// .timeline-content h3 {
+//   margin-top: 5px;
+//   margin-bottom: 5px;
+//   font-size: 25px;
+//   font-weight: 500
+// }
+
+// .timeline-content span {
+//   font-size: 15px;
+//   color: #a4a4a4;
+// }
+
+// .timeline-content p {
+//   font-size: 14px;
+//   line-height: 1.5em;
+//   word-spacing: 1px;
+//   color: #888;
+// }
+
+
+// @media screen and (max-width: 768px) {
+//   .container:before {
+//      left: 8px;
+//      width: 2px;
+//   }
+//   .timeline-block {
+//      width: 100%;
+//      margin-bottom: 30px;
+//   }
+//   .timeline-block-right {
+//      float: none;
+//   }
+
+// }

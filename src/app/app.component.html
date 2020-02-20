@@ -1,0 +1,117 @@
+<div [@openClose]="isOpen ? 'open' : 'closed'">
+  <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
+  <button (click)="toggle()">Toggle Open/Close</button>
+</div>
+
+<div *ngIf="isOpen; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>Content to render when condition is true.</ng-template>
+<ng-template #elseBlock>Content to render when condition is false.</ng-template>
+
+
+<eco-fab-speed-dial>
+  <eco-fab-speed-dial-trigger [spin]="true">
+    <button mat-fab (click)="doAction('trigger')">
+      <mat-icon class="spin180">add</mat-icon>
+    </button>
+  </eco-fab-speed-dial-trigger>
+
+  <eco-fab-speed-dial-actions>
+    <button mat-mini-fab (click)="doAction('action1')">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="doAction('action2')">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="doAction('action3')">
+      <mat-icon>search</mat-icon>
+    </button>
+  </eco-fab-speed-dial-actions>
+</eco-fab-speed-dial>
+
+
+<!-- 
+<div class="container">
+
+  <div class="timeline-block timeline-block-right">
+     <div class="timeline-content">
+        <h3>First Year</h3>
+        <span>Some work experience</span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+     </div>
+  </div>
+
+  <div class="timeline-block timeline-block-right">
+     <div class="marker"></div>
+     <div class="timeline-content">
+        <h3>Seconed Year</h3>
+        <span>Some work experience</span>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+     </div>
+  </div>
+</div> -->
+
+<!-- ========================================================================================= -->
+
+<div id="timeline-content">
+  <div class="timeline">
+    <div class="event">
+
+    </div>
+    <div class="event">
+    </div>
+    <div class="event" id="date">
+    </div>
+    <div class="event">
+
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================================== -->
+
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <button mat-raised-button mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        Previous
+      </button>
+      <button mat-raised-button mwlCalendarToday [(viewDate)]="viewDate">
+        Today
+      </button>
+      <button mat-raised-button mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        Next
+      </button>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h2>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h2>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <button mat-raised-button (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+        Month
+      </button>
+      <button mat-raised-button (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+        Week
+      </button>
+      <button mat-raised-button (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+        Day
+      </button>
+    </div>
+  </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="setView(CalendarView.Day)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+    (eventClicked)="setView(CalendarView.Day)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+    (eventClicked)="setView(CalendarView.Day)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-day-view>
+</div>
